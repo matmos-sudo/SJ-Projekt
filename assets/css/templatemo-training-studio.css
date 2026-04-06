@@ -216,11 +216,11 @@ header
   color: #232d39!important;
 }
 
-.background-header .main-nav .nav li:last-child a {
+.background-header .main-nav .nav li.main-button a {
   color: #fff !important;
 }
 
-.background-header .main-nav .nav li:last-child a:hover {
+.background-header .main-nav .nav li.main-button a:hover {
   color: #fff!important;
 }
 
@@ -308,7 +308,7 @@ header
   color: #fff;
 }
 
-.header-area .main-nav .nav li:last-child a {
+.header-area .main-nav .nav li.main-button a {
   display: inline-block;
   font-size: 13px;
   padding: 11px 17px;
