@@ -1,39 +1,34 @@
 <?php
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $fullname = htmlspecialchars(strip_tags($_POST['fullname']));
-    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+require_once ('classes/db.php');
+require_once ('classes/user.php');
+
+$message ="";
+
+
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $database = new Database();
+    $db_conn = $database->getConnection();
+
+    $user = new User($db_conn);
+
+    $name = $_POST['fullname'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
 
-    if(empty($fullname) || empty($email) || empty($password)) {
-        echo '<div class="alert alert-danger">Error: Please fill in all your fields.</div>';
-    }
-
-    $file = 'data/data.json';
-
-    if(file_exists($file)){
-        $json = file_get_contents($file);
-        $data = json_decode($json, true);
-    }else{
-        $data = array();
-    }
-
-    foreach($data as $key){
-        if($key['email'] == $email){
-            echo '<div class="alert alert-danger">Error: Email already exists.</div>';
-            return;
+    if(!empty($name) && !empty($email) && !empty($password)){
+        if($user->Register($name, $email, $password)){
+            header("location: signup.php?status=success");
+            exit();
+        }else{
+            header("location: signup.php?status=error");
+            exit();
         }
+    }else{
+        header("location: signup.php?status=error&msg=empty");
+        exit();
     }
 
-    $new = array(
-        "fullname" => $fullname,
-        "email" => $email,
-        "password" => password_hash($password, PASSWORD_DEFAULT)
-    );
-    $data[] = $new;
-
-    if(file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT))){
-        echo'<div class="alert alert-success">Registration successful! <a>Login here</a></div>';
-    }else {
-        echo '<div class="alert alert-danger">Error: Could not save your data.</div>';
-    }
 }
