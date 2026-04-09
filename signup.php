@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,7 +57,12 @@ if(!$header){
                     <h6>Work harder, get stronger</h6>
                     <h2>Join the <em>Team</em></h2>
                 </div>
-
+                <?php if(isset($_GET['status']))?>
+                <?php if($_GET['status'] == 'success'):?>
+                <div class="alert alert-success">Registrácia prebehla úspešne! Môžete sa prihlásiť.</div>
+                <?php elseif($_GET['status'] == 'error'):?>
+                <div class="alert alert-danger">Chyba: Tento mail tu uz je prihlaseny <li><a href="login.php">Chcete sa prihlasit ?</a></li></div>
+                <?php endif;?>
                 <form id="signup-form" action="signup_process.php" method="POST">
                     <div class="input-group">
                         <input type="text" name="fullname" id="fullname" placeholder="Full Name" required>
