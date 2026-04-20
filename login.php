@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,39 +49,22 @@ if(!$header){
         <source src="assets/images/gym-video.mp4" type="video/mp4" />
     </video>
     <div class="video-overlay header-text">
-        <div class="container">
-            <div class="signup-container">
-                <div class="signup-header">
-                    <h6>Work harder, get stronger</h6>
-                    <h2>Join the <em>Team</em></h2>
+        <div class="signup-container">
+            <div class="signup-header">
+                <h6>Welcome Back</h6>
+                <h2>Log In to Your <em>Account</em></h2>
+            </div>
+            <form id="login-form" action="login_process.php" method="POST">
+                <div class="input-group">
+                    <input type="email" name="email" id="email" placeholder="Email Address" required>
                 </div>
-                <?php if(isset($_GET['status'])): ?>
-                    <?php if($_GET['status'] == 'success'): ?>
-                        '<div class="alert alert-success">Registrácia prebehla úspešne! Môžete sa prihlásiť.</div>'
-                    <?php elseif ($_GET['status'] == 'error'): ?>
-                '<div class="alert alert-danger">Chyba: Tento mail tu uz je prihlaseny <li><a href="login.php">Chcete sa prihlasit ?</a></li></div>'
-                    <?php endif;?>
-                <?php endif;?>
-                <form id="signup-form" action="signup_process.php" method="POST">
-                    <div class="input-group">
-                        <input type="text" name="fullname" id="fullname" placeholder="Full Name" required>
-                    </div>
-                    <div class="input-group">
-                        <input type="email" name="email" id="email" placeholder="Email Address" required>
-                    </div>
-                    <div class="input-group">
-                        <input type="password" name="password" id="password" placeholder="Password" required>
-                    </div>
-                    <div class="input-group">
-                        <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
-                    </div>
-
-                    <div class="main-button">
-                        <button type="submit" id="form-submit">Become a Member</button>
-                    </div>
-
-                    <p class="login-link">Already a member? <a href="login.php">Log In</a></p>
-                </form>
+                <div class="input-group">
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                </div>
+                <button type="submit">Log In Now</button>
+            </form>
+            <div class="login-link">
+                New member? <a href="signup.php">Sign Up</a>
             </div>
         </div>
     </div>

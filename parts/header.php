@@ -14,7 +14,7 @@
                         <li class="scroll-to-section"><a href="#schedule">Schedules</a></li>
                         <li class="scroll-to-section"><a href="#contact-us">Contact</a></li>
                         <li class="main-button"><a href="signup.php">SignUp</a></li>
-                        <li class="main-button"><a href="#">Log in</a></li>
+                        <li class="main-button"><a href="login.php">Log in</a></li>
                     </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
