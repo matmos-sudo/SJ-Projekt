@@ -1,3 +1,6 @@
+<?php require_once 'classes/auth.php';?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,11 +39,7 @@
     
     
     <!-- ***** Header Area Start ***** -->
-    <?php require_once $header = 'parts/header.php';
-        if(!$header){
-            echo 'Could not load header';
-        }
-    ?>
+    <?php require_once 'parts/header.php'; ?>
     <!-- ***** Header Area End ***** -->
 
     <!-- ***** Main Banner Area Start ***** -->
@@ -52,7 +51,11 @@
         <div class="video-overlay header-text">
             <div class="caption">
                 <h6>work harder, get stronger</h6>
-                <h2>easy with our <em>gym</em></h2>
+                <?php if(isset($_SESSION['name'])): ?>
+                    <h2><em><?php echo htmlspecialchars($_SESSION['name']); ?></em></h2>
+                <?php else: ?>
+                    <h2>easy with our <em>gym</em></h2>
+                <?php endif; ?>
                 <div class="main-button scroll-to-section">
                     <a href="#features">Become a member</a>
                 </div>
