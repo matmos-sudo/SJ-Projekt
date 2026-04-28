@@ -60,48 +60,42 @@
                 <div class="row">
                     <div class="col-lg-6 offset-lg-3">
                         <div class="section-heading">
+                            <?php if(isset($_GET['added'])): ?>
+                                <div class="alert alert-success text-center">
+                                    Item added to cart successfully!
+                                </div>
+                            <?php endif; ?>
                             <h2><em>Our Products</em></h2>
                             <img src="assets/images/line-dec.png" alt="">
-                            <p>Support your training with our premium gym supplements and gear.</p>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <?php foreach($allProducts as $product):?>
-                    <div class="col-lg-4">
-                        <div class="product-item">
-                            <div class="image-thumb">
-                                <img src="<?php echo $product['img_url'];?>" alt="">
-                            </div>
-                            <div class="down-content">
-                                <span>$<?php echo number_format($product['product_price'],2);?></span>
-                                <h4><?php echo htmlspecialchars($product['product_name']);?></h4>
-                                <p><?php echo htmlspecialchars($product['description']);?></p>
-                                <div class="main-button">
-                                    <a href="#">Add to Cart</a>
+                        <div class="col-lg-4">
+                            <div class="product-item">
+                                <div class="image-thumb">
+                                    <img src="<?php echo $product['img_url'];?>" alt="">
+                                </div>
+                                <div class="down-content">
+                                    <span>$<?php echo number_format($product['product_price'],2);?></span>
+                                    <h4><?php echo htmlspecialchars($product['product_name']);?></h4>
+                                    <p><?php echo htmlspecialchars($product['description']);?></p>
+                                    <div class="main-button">
+                                        <?php if(isset($_SESSION['user_id'])):?>
+                                        <a href="add_to_cart.php?product_id=<?php echo $product['product_id'];?>">Add to Cart</a>
+                                        <?php else:?>
+                                        <a href="login.php">Login to Add to Cart</a>
+                                        <?php endif;?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     <?php endforeach;?>
                 </div>
             </div>
-<!-- ***** Main Banner Area End ***** -->
-
-<!-- ***** Features Item Start ***** -->
-
-<!-- ***** Testimonials Ends ***** -->
-
-<!-- ***** Contact Us Area Starts ***** -->
-
-<!-- ***** Contact Us Area Ends ***** -->
-
-<!-- ***** Footer Start ***** -->
-<?php include_once $footer = 'parts/footer.php';
-if(!$footer){
-    echo 'Could not find the footer';
-}
-?>
+        </section>
+    </div> </div> <?php require_once 'parts/footer.php'; ?>
 <!-- jQuery -->
 <script src="assets/js/jquery-2.1.0.min.js"></script>
 

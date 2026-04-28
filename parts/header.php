@@ -15,6 +15,7 @@
                         <li class="scroll-to-section"><a href="#schedule">Schedules</a></li>
                         <li class="scroll-to-section"><a href="#contact-us">Contact</a></li>
                         <?php if(isset($_SESSION['name'])): ?>
+                            <li><a href="cart.php">Cart (<?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>)</a></li>
                             <li class="main-button"><a href="logout.php">Logout</a></li>
                         <?php else: ?>
                             <li class="main-button"><a href="signup.php">SignUp</a></li>
