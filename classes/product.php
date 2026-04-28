@@ -14,4 +14,5 @@ class Product extends Database{
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
 }
