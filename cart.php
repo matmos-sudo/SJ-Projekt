@@ -165,7 +165,7 @@
                                     <p><i class="fa fa-history"></i> 30-DAY RETURNS <i class="fa fa-check text-success float-right"></i></p>
                                 </div>
                                 <?php if(!empty($cartID)): ?>
-                                    <a href="checkout_process.php" class="checkout-btn">
+                                    <a href="checkout.php" class="checkout-btn">
                                         <i class="fa fa-lock"></i> PROCEED TO CHECKOUT
                                     </a>
                                 <?php else: ?>
