@@ -9,7 +9,7 @@
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                        <li class="scroll-to-section"><a href="index.php" class="active">Home</a></li>
                         <li class="scroll-to-section"><a href="products_page.php">Shop</a></li>
                         <li class="scroll-to-section"><a href="#our-classes">Classes</a></li>
                         <li class="scroll-to-section"><a href="#schedule">Schedules</a></li>

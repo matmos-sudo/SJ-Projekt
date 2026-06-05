@@ -1,0 +1,70 @@
+body {
+    background-color: #232d39;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+}
+
+.success-card {
+    background: rgba(43, 52, 64, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 50px 40px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.success-icon {
+    font-size: 80px;
+    color: #28a745; /* Success Green */
+    margin-bottom: 25px;
+    animation: scaleUp 0.4s ease-in-out;
+}
+
+.success-card h2 {
+    font-size: 32px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.success-card h2 em {
+    font-style: normal;
+    color: #ed563b; /* Accent Orange */
+}
+
+.success-card p {
+    color: #ddd;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 35px;
+}
+
+.gym-back-btn {
+    display: inline-block;
+    background-color: #ed563b;
+    color: #fff !important;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 14px 35px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(237, 86, 59, 0.2);
+}
+
+.gym-back-btn:hover {
+    background-color: #f9735b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(237, 86, 59, 0.4);
+}
+
+@keyframes scaleUp {
+    0% { transform: scale(0); opacity: 0; }
+    70% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
