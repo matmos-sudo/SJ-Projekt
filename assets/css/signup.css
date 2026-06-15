@@ -29,7 +29,6 @@
     color: #ed563b;
 }
 
-/* Input Fields */
 .input-group {
     margin-bottom: 20px;
 }
@@ -54,7 +53,6 @@
     color: #ccc;
 }
 
-/* Button override */
 .signup-container button {
     width: 100%;
     background-color: #ed563b;

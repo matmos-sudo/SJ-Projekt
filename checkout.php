@@ -4,10 +4,8 @@ require_once 'classes/product.php';
 
 checkLogin();
 
-// 1. Grab the cart from the session immediately
 $cartID = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 
-// 2. STRICT CHECK: If it's truly empty, THEN boot them out
 if (empty($cartID) || count($cartID) < 1) {
     header("Location: products_page.php");
     exit();
@@ -19,7 +17,6 @@ $allProducts = $product->getProducts();
 $counts = array_count_values($cartID);
 $subTotal = 0;
 
-// Calculate the final subtotal behind the scenes
 foreach($counts as $id => $qty) {
     foreach($allProducts as $p) {
         if($p['product_id'] == $id) {
