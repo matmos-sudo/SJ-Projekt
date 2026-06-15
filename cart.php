@@ -1,11 +1,11 @@
 <?php require_once 'classes/auth.php';
-      require_once 'classes/product.php';
+require_once 'classes/product.php';
 
-      checkLogin();
+checkLogin();
 
-      $product = new Product();
-      $allProducts = $product->getProducts();
-      $cartID = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+$product = new Product();
+$allProducts = $product->getProducts();
+$cartID = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 ?>
 
 
@@ -92,28 +92,28 @@
 
                                         foreach($counts as $id => $qty):
                                             foreach($allProducts as $p):
-                                            if($p['product_id'] == $id):
-                                                $itemTotal= $p['product_price'] * $qty;
-                                                $subtotal += $itemTotal;
-                                        ?>
-                                                <tr>
-                                                <td class="product-info">
-                                                    <img src="<?php echo $p['img_url']; ?>" alt="" class="cart-product-img">
-                                                    <div class="product-details">
-                                                        <h6 class="product-name"><?php echo htmlspecialchars($p['product_name']); ?></h6>
-                                                    </div>
-                                                </td>
-                                                <td class="align-middle">$<?php echo number_format($p['product_price'], 2); ?></td>
-                                                <td class="align-middle"><?php echo $qty; ?></td>
-                                                <td class="align-middle">$<?php echo number_format($itemTotal, 2); ?></td>
-                                                <td class="align-middle">
-                                                    <a href="remove_item.php?id=<?php echo $id; ?>" class="remove-btn">
-                                                        <i class="fa fa-times"></i>
-                                                    </a>
-                                                </td>
-                                                </tr>
-                                            <?php
-                                            endif;
+                                                if($p['product_id'] == $id):
+                                                    $itemTotal= $p['product_price'] * $qty;
+                                                    $subtotal += $itemTotal;
+                                                    ?>
+                                                    <tr>
+                                                        <td class="product-info">
+                                                            <img src="<?php echo $p['img_url']; ?>" alt="" class="cart-product-img">
+                                                            <div class="product-details">
+                                                                <h6 class="product-name"><?php echo htmlspecialchars($p['product_name']); ?></h6>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle">$<?php echo number_format($p['product_price'], 2); ?></td>
+                                                        <td class="align-middle"><?php echo $qty; ?></td>
+                                                        <td class="align-middle">$<?php echo number_format($itemTotal, 2); ?></td>
+                                                        <td class="align-middle">
+                                                            <a href="remove_item.php?id=<?php echo $id; ?>" class="remove-btn">
+                                                                <i class="fa fa-times"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                <?php
+                                                endif;
                                             endforeach;
                                         endforeach;
                                         ?>
@@ -164,16 +164,48 @@
                                     <p><i class="fa fa-truck"></i> FREE SHIPPING <i class="fa fa-check text-success float-right"></i></p>
                                     <p><i class="fa fa-history"></i> 30-DAY RETURNS <i class="fa fa-check text-success float-right"></i></p>
                                 </div>
-                                <?php if(!empty($cartID)): ?>
-                                    <a href="checkout.php" class="checkout-btn">
-                                        <i class="fa fa-lock"></i> PROCEED TO CHECKOUT
-                                    </a>
+
+                                <?php
+                                if(!empty($cartID)):
+                                    $outOfStockItems = [];
+
+                                    foreach($counts as $id => $qty) {
+                                        foreach($allProducts as $p) {
+                                            if($p['product_id'] == $id) {
+                                                if($qty > $p['quantity']) {
+                                                    $outOfStockItems[] = htmlspecialchars($p['product_name']);
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    if(!empty($outOfStockItems)):
+                                        ?>
+                                        <div class="out-of-stock-alert">
+                                            <i class="fa fa-exclamation-triangle"></i>
+                                            <strong>Review Your Cart:</strong>
+                                            <p style="margin: 5px 0 0 0; font-size: 11px; opacity: 0.9; color: #fff;">
+                                                The following item(s) are out of stock. Please remove them to proceed to checkout:
+                                            </p>
+                                            <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 11px; color: #ffb3b3;">
+                                                <?php foreach($outOfStockItems as $itemName): ?>
+                                                    <li><?php echo $itemName; ?></li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </div>
+                                        <a href="#" class="checkout-btn out-of-stock-disabled-btn clean-btn-block">
+                                            <i class="fa fa-lock"></i> PROCEED TO CHECKOUT
+                                        </a>
+                                    <?php else: ?>
+                                        <a href="checkout.php" class="checkout-btn clean-btn-block">
+                                            <i class="fa fa-lock"></i> PROCEED TO CHECKOUT
+                                        </a>
+                                    <?php endif; ?>
                                 <?php else: ?>
-                                    <a href="#" class="checkout-btn disabled" style="opacity: 0.5; pointer-events: none;">
+                                    <a href="#" class="checkout-btn disabled clean-btn-block" style="opacity: 0.5; pointer-events: none;">
                                         <i class="fa fa-lock"></i> CART EMPTY
                                     </a>
                                 <?php endif; ?>
-
                                 <div class="payment-methods">
                                     <p>SECURE CHECKOUT</p>
                                     <img src="https://i.imgur.com/769996r.png" alt="payments" class="img-fluid" style="opacity: 0.6;">
@@ -183,8 +215,8 @@
                     </div>
                 </div>
             </section>
+        </div>
     </div>
-</div>
 </div>
 <!-- ***** Main Banner Area End ***** -->
 
