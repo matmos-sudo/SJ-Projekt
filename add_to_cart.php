@@ -10,7 +10,6 @@ if (isset($_GET['product_id'])) {
     }
 
     $_SESSION['cart'][] = $product_id;
-    session_write_close();
     header("Location: products_page.php?added=1");
     exit();
 

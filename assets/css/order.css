@@ -17,7 +17,7 @@ body {
 
 .success-icon {
     font-size: 80px;
-    color: #28a745; /* Success Green */
+    color: #28a745;
     margin-bottom: 25px;
     animation: scaleUp 0.4s ease-in-out;
 }
@@ -32,7 +32,7 @@ body {
 
 .success-card h2 em {
     font-style: normal;
-    color: #ed563b; /* Accent Orange */
+    color: #ed563b;
 }
 
 .success-card p {

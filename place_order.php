@@ -1,10 +1,21 @@
 <?php
 
 require_once 'classes/auth.php';
+require_once 'classes/product.php';
+session_start();
 checkLogin();
 
-// Empty out the session cart because the order is "complete"
-if (isset($_SESSION['cart'])) {
+if (!empty($_SESSION['cart'])) {
+    $product = new Product();
+
+    $cartQuantities = array_count_values($_SESSION['cart']);
+
+    foreach ($cartQuantities as $product_id => $qty) {
+
+        $product->reduceStock($product_id, $qty);
+    }
+
+
     unset($_SESSION['cart']);
 }
 ?>
